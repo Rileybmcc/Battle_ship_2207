@@ -40,20 +40,19 @@ class Cell
   end
 
   def render(input = false)
-    if input == false
 
-      if @coordinates_hit == false
-        "."
-      elsif !empty? && @ship.sunk?
-        "X"
-      elsif !empty? && fired_upon?
-        "H"
-      elsif @coordinates_hit == true
-        "M"
-      end
-
+    if !empty? && @ship.sunk?
+      "X"
+    elsif !empty? && fired_upon?
+      "H"
+    elsif @coordinates_hit == true
+      "M"
     elsif full_health_cell == true && input == true
       "S"
+    elsif !fired_upon?
+        "."
     end
   end
+
+  
 end
