@@ -53,4 +53,11 @@ RSpec.describe Cell do
     expect(@cell.render).to eq('M')
 
   end
+
+  it 'can render a hit' do
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    expect(@cell.render).to eq('H')
+
+  end
 end
