@@ -31,15 +31,29 @@ class Cell
     end
   end
 
-  def render
-    if @coordinates_hit == false
-      "."
-    elsif !empty? && @ship.sunk?
-      "X"
-    elsif !empty? && fired_upon?
-      "H"
-    elsif @coordinates_hit == true
-      "M"
+  def full_health_cell
+    if !empty? && !fired_upon?
+      true
+    else
+      false
+    end
+  end
+
+  def render(input = false)
+    if input == false
+
+      if @coordinates_hit == false
+        "."
+      elsif !empty? && @ship.sunk?
+        "X"
+      elsif !empty? && fired_upon?
+        "H"
+      elsif @coordinates_hit == true
+        "M"
+      end
+
+    elsif full_health_cell == true && input == true
+      "S"
     end
   end
 end
