@@ -9,4 +9,8 @@ class Ship
 
   end
 
+  def health
+    @length 
+  end
+
 end
