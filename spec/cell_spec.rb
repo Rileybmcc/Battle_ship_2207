@@ -13,7 +13,10 @@ RSpec.describe Cell do
     expect(@cell).to be_instance_of(Cell)
   end
 
+  it 'can call on coordinates' do
+    expect(@cell.coordinates).to eq("B4")
 
+  end
 
 
 
