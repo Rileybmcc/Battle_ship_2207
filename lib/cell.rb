@@ -20,6 +20,14 @@ class Cell
 
   def fired_upon?
     @coordinates_hit
-    
+
+  end
+
+  def fire_upon
+    @coordinates_hit = true
+    if !empty?
+      ship.hit
+      
+    end
   end
 end

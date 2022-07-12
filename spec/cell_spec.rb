@@ -39,6 +39,6 @@ RSpec.describe Cell do
   it 'cell can be fired upon' do
     @cell.place_ship(@cruiser)
     @cell.fire_upon
-    expect(@cell.ship.health).tp eq(2)
+    expect(@cell.ship.health).to eq(2)
   end
 end
