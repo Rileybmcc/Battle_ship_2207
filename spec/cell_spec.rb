@@ -15,10 +15,11 @@ RSpec.describe Cell do
 
   it 'can call on coordinates' do
     expect(@cell.coordinates).to eq("B4")
-
   end
 
-
+  it 'can tell if cell has a ship' do
+    expect(@cell.ship).to eq(nil)
+  end
 
 
 end
