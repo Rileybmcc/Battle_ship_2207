@@ -30,4 +30,9 @@ RSpec.describe Cell do
     expect(@cell.ship.name).to eq("cruiser")
     expect(@cell.empty?).to eq(false)
   end
+
+  it 'can tell if it has been fired upon' do
+    @cell.place_ship(@cruiser)
+    expect(@cell.fired_up?).to eq(false)
+  end
 end

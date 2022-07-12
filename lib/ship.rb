@@ -26,4 +26,6 @@ class Ship
     @number_of_hits += 1
 
   end
+
+  
 end
