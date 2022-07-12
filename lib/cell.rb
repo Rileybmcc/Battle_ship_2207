@@ -1,3 +1,4 @@
+require './lib/ship'
 class Cell
   attr_reader :coordinates,
               :ship
@@ -11,4 +12,8 @@ class Cell
     @ship == nil
   end
 
+  def place_ship(name)
+    @ship = name
+
+  end
 end
