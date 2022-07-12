@@ -30,4 +30,50 @@ RSpec.describe Cell do
     expect(@cell.ship.name).to eq("cruiser")
     expect(@cell.empty?).to eq(false)
   end
+
+  it 'can tell if it has been fired upon' do
+    @cell.place_ship(@cruiser)
+    expect(@cell.fired_upon?).to eq(false)
+  end
+
+  it 'cell can be fired upon' do
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    expect(@cell.ship.health).to eq(2)
+    expect(@cell.fired_upon?).to eq(true)
+  end
+
+  it 'can render cell' do
+    expect(@cell.render).to eq('.')
+
+  end
+
+  it 'can render a miss' do
+    @cell.fire_upon
+    expect(@cell.render).to eq('M')
+
+  end
+
+  it 'can render a hit' do
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    expect(@cell.render).to eq('H')
+
+  end
+
+  it 'can render sunk ship' do
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    @cell.fire_upon
+    @cell.fire_upon
+    expect(@cell.ship.sunk?).to eq(true)
+    expect(@cell.render).to eq('X')
+
+  end
+
+  it 'can render healthy ship' do
+    @cell.place_ship(@cruiser)
+    expect(@cell.render(true)).to eq('S')
+
+  end
 end
