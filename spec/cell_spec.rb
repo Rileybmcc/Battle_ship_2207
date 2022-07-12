@@ -60,4 +60,14 @@ RSpec.describe Cell do
     expect(@cell.render).to eq('H')
 
   end
+
+  it 'can render sunk ship' do
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    @cell.fire_upon
+    @cell.fire_upon
+    expect(@cell.ship.sunk?).to eq(true)
+    expect(@cell.render).to eq('X')
+
+  end
 end
