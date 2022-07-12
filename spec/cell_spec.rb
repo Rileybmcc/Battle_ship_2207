@@ -33,6 +33,6 @@ RSpec.describe Cell do
 
   it 'can tell if it has been fired upon' do
     @cell.place_ship(@cruiser)
-    expect(@cell.fired_up?).to eq(false)
+    expect(@cell.fired_upon?).to eq(false)
   end
 end

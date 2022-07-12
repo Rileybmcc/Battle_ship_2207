@@ -27,5 +27,4 @@ class Ship
 
   end
 
-  
 end
