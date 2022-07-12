@@ -19,7 +19,14 @@ RSpec.describe Ship do
     cruiser = Ship.new('cruiser', 3)
 
     expect(cruiser.length).to eq(3)
-    
+
+  end
+
+  it 'can return ship health' do
+    cruiser = Ship.new('cruiser', 3)
+
+    expect(cruiser.health).to eq(3)
+
   end
 
 end
