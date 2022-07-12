@@ -34,6 +34,9 @@ class Cell
   def render
     if @coordinates_hit == false
       "."
+    elsif @coordinates_hit == true
+      "M"
+        
     end
-  end    
+  end
 end
