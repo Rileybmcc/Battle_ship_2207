@@ -43,4 +43,9 @@ RSpec.describe Cell do
     expect(@cell.fired_upon?).to eq(true)
   end
 
+  it 'can render cell' do
+    expect(@cell.render).to eq('.')
+
+  end
+
 end
