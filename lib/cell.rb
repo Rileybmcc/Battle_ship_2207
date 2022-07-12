@@ -34,6 +34,8 @@ class Cell
   def render
     if @coordinates_hit == false
       "."
+    elsif !empty? && @ship.sunk?
+      "X"
     elsif !empty? && fired_upon?
       "H"
     elsif @coordinates_hit == true
