@@ -48,4 +48,9 @@ RSpec.describe Cell do
 
   end
 
+  it 'can render a miss' do
+    @cell.fire_upon
+    expect(@cell.render).to eq('M')
+
+  end
 end
