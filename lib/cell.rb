@@ -34,9 +34,10 @@ class Cell
   def render
     if @coordinates_hit == false
       "."
+    elsif !empty? && fired_upon?
+      "H"
     elsif @coordinates_hit == true
       "M"
-        
     end
   end
 end
