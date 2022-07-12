@@ -70,4 +70,10 @@ RSpec.describe Cell do
     expect(@cell.render).to eq('X')
 
   end
+
+  it 'can render healthy ship' do
+    @cell.place_ship(@cruiser)
+    expect(@cell.render(true)).to eq('S')
+
+  end
 end
