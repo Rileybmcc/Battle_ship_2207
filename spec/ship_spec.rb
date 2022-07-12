@@ -13,4 +13,13 @@ RSpec.describe Ship do
     expect(cruiser.name).to eq("cruiser")
 
   end
+
+
+  it 'can access length' do
+    cruiser = Ship.new('cruiser', 3)
+
+    expect(cruiser.length).to eq(3)
+    
+  end
+
 end
