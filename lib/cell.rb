@@ -27,7 +27,13 @@ class Cell
     @coordinates_hit = true
     if !empty?
       ship.hit
-      
+
     end
   end
+
+  def render
+    if @coordinates_hit == false
+      "."
+    end
+  end    
 end
