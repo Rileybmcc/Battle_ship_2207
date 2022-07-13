@@ -29,4 +29,13 @@ class Board
     @cells.keys.include?(cell)
   end
 
+  def valid_placement?(ship_type, cell_placement_array)
+    if ship_type.length == cell_placement_array.count
+      true
+      # cell_placement_array[1][1]
+    else
+      false
+    end
+  end
+
 end

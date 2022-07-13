@@ -28,6 +28,18 @@ RSpec.describe Board do
     expect(board.valid_coordinate?("A22")).to eq(false)
   end
 
+  it 'can place ship on valid cells' do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    sub = Ship.new("Submarine", 2)
+    expect(board.valid_placement?(cruiser, ["A1", "A2"])).to eq(false)
+
+    expect(board.valid_placement?(cruiser, ["A1", "A2", "A4"])).to eq(false)
+    expect(board.valid_placement?(sub, ["A1", "C1"])).to eq(false)
+    expect(board.valid_placement?(cruiser, ["A3", "A2", "A1"])).to eq(false)
+    expect(board.valid_placement?(sub, ["C1", "B1"])).to eq(false)
+
+  end
 
 
 end
