@@ -23,7 +23,10 @@ class Board
               "D3" => Cell.new("D3"),
               "D4" => Cell.new("D4")
             }
-            # require "pry"; binding.pry
+  end
+
+  def valid_coordinate?(cell)
+    @cells.keys.include?(cell)
   end
 
 end
