@@ -12,9 +12,10 @@ RSpec.describe Board do
 
   it 'has a hash with 16 key/ value pairs' do
     board = Board.new
-    p board.cells
-    expect(board.cells.cells).to eq(16)
-    expect(board.cells.keys.include("C4")).to eq(true)
+    # p board.cells
+    # require "pry"; binding.pry
+    expect(board.cells.count).to eq(16)
+    expect(board.cells.keys.include?("C4")).to eq(true)
 
   end
 
