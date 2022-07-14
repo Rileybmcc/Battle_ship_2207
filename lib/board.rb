@@ -29,13 +29,33 @@ class Board
     @cells.keys.include?(cell)
   end
 
-  def valid_placement?(ship_type, cell_placement_array)
-    if ship_type.length == cell_placement_array.count
-      true
-      # cell_placement_array[1][1]
+  def valid_placement?(ship_type, input)
+    numz = "1234"
+    letters = "ABCD"
+    if ship_type.length == input.count
+      if input.count == 2
+
+        if input[0][0] == input[1][0] && numz.include?(input[0][1].concat input[1][1])
+          true
+        elsif input[0][1] == input[1][1] && letters.include?(input[0][0].concat input[1][0])
+          true
+        else
+          false
+        end
+
+      elsif input.count == 3
+        if input.map { |cell| cell[0] }.uniq.count == 1 && numz.include?(input[0][1].concat input[1][1].concat input[2][1])
+          true
+        elsif input.map { |cell| cell[1] }.uniq.count == 1 && letters.include?(input[0][0].concat input[1][0].concat input[2][0])
+          true
+        else
+          false
+        end
+
+      end
     else
       false
+
     end
   end
-
 end
