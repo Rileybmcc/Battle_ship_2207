@@ -102,10 +102,11 @@ class Board
       p "Fine then...we didn't want to play either"
     elsif user_input.downcase =="p"
       p "Let's play!"
+      
 
     end
 
-  end   
+  end
 
 
 end
