@@ -25,17 +25,29 @@ class Board
             }
   end
 
-  def valid_coordinate?(cell)
-    @cells.keys.include?(cell)
+  def valid_coordinate?(data)
+    @cells.keys.include?(data)
   end
+
+  # def all_empty(input)
+  #   if input.map { |cell| @cells[cell].empty? }.uniq.count == 1
+  #     if input.map { |cell| @cells[cell].empty? }.uniq == true
+  #       true
+  #     else
+  #       false
+  #     end
+  #   else
+  #     false
+  #   end
+  # end
+  # all_empty(input)  #
 
   def valid_placement?(ship_type, input)
     numz = "1234"
     letters = "ABCD"
-    if ship_type.length == input.count
+    if ship_type.length == input.count 
 
-      if input.map { |cell| cell.empty? }.uniq.count == 1 && input.map { |cell| cell.empty? }.uniq == true
-
+      if input.map { |cell| @cells[cell].empty? }.uniq.count == 1 && input.map { |cell| @cells[cell].empty? }.uniq == [true]
 
         if input.count == 2
 
@@ -48,6 +60,7 @@ class Board
           end
 
         elsif input.count == 3
+
           if input.map { |cell| cell[0] }.uniq.count == 1 && numz.include?(input[0][1].concat input[1][1].concat input[2][1])
             true
           elsif input.map { |cell| cell[1] }.uniq.count == 1 && letters.include?(input[0][0].concat input[1][0].concat input[2][0])
@@ -65,9 +78,10 @@ class Board
   end
 
   def place(ship_type, input)
-    if valid_placement?(ship_type, input)
 
-      input.each { |cell| cell.place_ship(ship_type)}
+    if valid_placement?(ship_type, input)
+      # require "pry"; binding.pry
+      input.each { |coord| @cells[coord].place_ship(ship_type)}
       true
 
     else
@@ -75,8 +89,9 @@ class Board
     end
   end
 
-  def render
-    "  1 2 3 4 \nA #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \nB #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \nC #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \nD #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n"
+  def render(visible = false)
+    # require "pry"; binding.pry
+    "  1 2 3 4 \nA #{@cells["A1"].render(visible)} #{@cells["A2"].render(visible)} #{@cells["A3"].render(visible)} #{@cells["A4"].render(visible)} \nB #{@cells["B1"].render(visible)} #{@cells["B2"].render(visible)} #{@cells["B3"].render(visible)} #{@cells["B4"].render(visible)} \nC #{@cells["C1"].render(visible)} #{@cells["C2"].render(visible)} #{@cells["C3"].render(visible)} #{@cells["C4"].render(visible)} \nD #{@cells["D1"].render(visible)} #{@cells["D2"].render(visible)} #{@cells["D3"].render(visible)} #{@cells["D4"].render(visible)} \n"
   end
 
 
