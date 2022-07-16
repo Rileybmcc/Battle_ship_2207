@@ -5,4 +5,5 @@ require './lib/player'
 
 player = Player.new
 
-player.player_placement
+
+player.comp_placement
