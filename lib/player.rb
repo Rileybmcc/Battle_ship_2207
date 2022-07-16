@@ -46,22 +46,21 @@ The Cruiser is three units long and the Submarine is two units long."
       good_to_go = false
         until good_to_go == true do
           puts @player_board.render
-          puts "Enter the squares for the Cruiser (3 spaces):"
+          puts "Enter the squares for the Submarine (2 spaces):"
           puts "Please enter coordinates from left to right or top to bottom"
           puts "Enter 1st coordinate"
-          user_1 = gets.chomp.upcase
-          puts "Enter 2nd coordinate:"
-          user_2 = gets.chomp.upcase
-          puts "Enter 3nd coordinate:"
           user_3 = gets.chomp.upcase
-          user_cruiser = [user_1, user_2, user_3]
-            if @player_board.valid_placement?(@player_cruiser, user_cruiser)
-              @player_board.place(@player_cruiser, user_cruiser)
+          puts "Enter 2nd coordinate:"
+          user_4 = gets.chomp.upcase
+
+          user_sub = [user_3, user_4]
+            if @player_board.valid_placement?(@player_sub, user_sub)
+              @player_board.place(@player_sub, user_sub)
               good_to_go = true
             else
               puts "Invalid coordinates...try again!"
             end
-          end    
+          end
   end
 
   def start
