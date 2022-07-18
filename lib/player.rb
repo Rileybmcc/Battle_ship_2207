@@ -72,6 +72,7 @@ class Player
     info.map { |data| @player_board.cells.keys.include?(data) }.uniq.count == 1 && info.map { |data| @player_board.cells.keys.include?(data) }.uniq == [true]
   end
 
+
   def comp_placement
     comp_cruiser_cells = []
     until comp_cruiser_cells.count == 3 && @comp_board.valid_placement?(@comp_cruiser, comp_cruiser_cells) do
@@ -98,6 +99,9 @@ class Player
       p "Fine then...we didn't want to play either"
     elsif user_input.downcase =="p"
       p "Let's play!"
+      comp_placement
+      player_placement
+      game_loop
     end
   end
 
@@ -110,21 +114,90 @@ class Player
   end
 
   def player_turn
+    puts "Enter the coordinate for your shot:"
+    popeye = false
 
+    until popeye == true do
+    @user_firing = gets.chomp.upcase
+
+      if @comp_board.valid_coordinate?(@user_firing) && @comp_board.cells[@user_firing].fired_upon? == false
+        popeye = true
+      elsif @comp_board.valid_coordinate?(@user_firing)
+        puts "You have already fired upon this cell, check your map and enter new coordinates:"
+      else
+        puts "Please enter valid coordinate:"
+      end
+    end
+    @comp_board.cells[@user_firing].fire_upon
+    @user_firing
   end
 
   def comp_turn
+    keep_looping = true
 
+    until keep_looping == false do
+      @rosemary = @player_board.cells.keys.shuffle.first
+      if @player_board.cells[@rosemary].fired_upon? == false
+        @player_board.cells[@rosemary].fire_upon
+        keep_looping = false
+      end
+    end
+    # if    #sink
+    #   "sink"
+    # elsif     #hit
+    #   "hit"
+    # else      #miss
+    #   "miss"
+    # end
+    @rosemary
   end
+
+  def computer_health?
+   @comp_sub.health == 0 && @comp_cruiser.health == 0
+  end
+
+  def player_health?
+    @player_sub.health == 0 && @player_cruiser.health == 0
+ end
 
   def game_loop
-    # puts @comp_board.render
-    #
-    # puts @player_board.render(true)
+
+    until player_health? || computer_health? do
+      show_boards
+      player_turn
+      comp_turn
+      feedback_player
+      feedback_comp
+    end
+    if computer_health? 
+      puts "You won"
+      start
+    elsif
+      puts "I won!"
+      start
+    end
+
   end
 
-  def end_message
-    "You won"
-    "I won!"
-end
+  def feedback_comp
+    # require "pry"; binding.pry
+    if @player_board.cells[@rosemary].render == "X"
+      puts "My shot on #{@rosemary.chomp("")} sunk your ship!"
+    elsif @player_board.cells[@rosemary].render == "H"
+      puts "My shot on #{@rosemary.chomp("")} was a hit."
+    else
+      puts "My shot on #{@rosemary.chomp("")} was a miss."
+    end
+  end
+
+  def feedback_player
+    if @comp_board.cells[@user_firing].render == "X"
+      puts "Your shot on #{@user_firing.chomp("")} sunk my ship!"
+    elsif @comp_board.cells[@user_firing].render == "H"
+      puts "Your shot on #{@user_firing.chomp("")} was a hit."
+    else
+      puts "Your shot on #{@user_firing.chomp("")} was a miss."
+    end
+  end
+
 end
