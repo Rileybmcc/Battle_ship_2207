@@ -77,9 +77,17 @@ The Cruiser is three units long and the Submarine is two units long."
     until comp_cruiser_cells.count == 3 && @comp_board.valid_placement?(@comp_cruiser, comp_cruiser_cells) do
       comp_cruiser_cells = []
       comp_cruiser_cells = @comp_board.cells.keys.shuffle.first(3)
-      p comp_cruiser_cells
     end
+    @comp_board.place(@comp_cruiser, comp_cruiser_cells)
+
+    comp_sub_cells = []
+    until comp_sub_cells.count == 2 && @comp_board.valid_placement?(@comp_sub, comp_sub_cells) do
+      comp_sub_cells = []
+      comp_sub_cells = @comp_board.cells.keys.shuffle.first(2)
     end
+    @comp_board.place(@comp_sub, comp_sub_cells)
+    # puts @comp_board.render(true)  #For testing purposes(not actual gameplay)
+  end
 
 
   def start
