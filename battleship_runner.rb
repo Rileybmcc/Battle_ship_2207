@@ -1,7 +1,9 @@
 require './lib/board'
 require './lib/cell'
 require './lib/ship'
+require './lib/player'
 
-board = Board.new
+player = Player.new
 
-board.start
+
+player.comp_placement
