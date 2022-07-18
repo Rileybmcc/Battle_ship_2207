@@ -7,3 +7,5 @@ player = Player.new
 
 
 player.comp_placement
+player.player_placement
+player.show_boards

@@ -24,11 +24,11 @@ class Player
   def player_placement
     # user_cruiser = []
     # until user_cruiser.map { |data| @player_board.cells.keys.include?(data) }.uniq == [true]
-    puts "I have laid out my ships on the grid.
-You now need to lay out your two ships.
-The Cruiser is three units long and the Submarine is two units long."
-  good_to_go = false
-    until good_to_go == true do
+    puts "I have laid out my ships on the grid."
+    puts "You now need to lay out your two ships."
+    puts "The Cruiser is three units long and the Submarine is two units long."
+      good_to_go = false
+      until good_to_go == true do
       puts @player_board.render
       puts "Enter the squares for the Cruiser (3 spaces):"
       puts "Please enter coordinates from left to right or top to bottom"
@@ -98,8 +98,33 @@ The Cruiser is three units long and the Submarine is two units long."
       p "Fine then...we didn't want to play either"
     elsif user_input.downcase =="p"
       p "Let's play!"
-
-
     end
   end
+
+  def show_boards
+    puts "============= COMPUTER BOARD ============="
+    puts @comp_board.render #(true) #for testing purposes
+    puts "============= PLAYER BOARD ============="
+    puts @player_board.render(true)
+
+  end
+
+  def player_turn
+
+  end
+
+  def comp_turn
+
+  end
+
+  def game_loop
+    # puts @comp_board.render
+    #
+    # puts @player_board.render(true)
+  end
+
+  def end_message
+    "You won"
+    "I won!"
+end
 end
