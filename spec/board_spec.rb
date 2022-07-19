@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
@@ -36,7 +38,8 @@ RSpec.describe Board do
     expect(board.valid_placement?(cruiser, ["A1", "A2", "A4"])).to eq(false)
     expect(board.valid_placement?(sub, ["A1", "C1"])).to eq(false)
     expect(board.valid_placement?(cruiser, ["A3", "A2", "A1"])).to eq(false)
-    expect(board.valid_placement?(sub, ["C1", "B1"])).to eq(false)
+    expect(board.valid_placement?(sub, ["A1", "A2"])).to eq(true)
+    expect(board.valid_placement?(sub, ["A2", "A1"])).to eq(false)
     expect(board.valid_placement?(sub, ["B1", "C2"])).to eq(false)
     expect(board.valid_placement?(cruiser, ["B2", "C3", "D4"])).to eq(false)
   end
@@ -52,6 +55,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(cruiser, ["A1", "A2", "A3"])).to eq(true)
     board.place(cruiser, ["A1", "A2", "A3"])
     expect(board.cells["A1"].ship == board.cells["A3"].ship).to eq(true)
+    expect(board.place(cruiser, ["C4", "C3", "C2"])).to eq(false)
   end
 
   it 'cannot place overlapping ships' do

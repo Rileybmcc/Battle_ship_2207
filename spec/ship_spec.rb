@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require "./lib/ship"
 
 RSpec.describe Ship do
