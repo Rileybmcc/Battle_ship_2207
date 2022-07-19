@@ -22,13 +22,12 @@ class Player
 
 
   def player_placement
-    # user_cruiser = []
-    # until user_cruiser.map { |data| @player_board.cells.keys.include?(data) }.uniq == [true]
+
     puts "I have laid out my ships on the grid."
     puts "You now need to lay out your two ships."
     puts "The Cruiser is three units long and the Submarine is two units long."
-      good_to_go = false
-      until good_to_go == true do
+    good_to_go = false
+    until good_to_go == true do
       puts @player_board.render
       puts "Enter the squares for the Cruiser (3 spaces):"
       puts "Please enter coordinates from left to right or top to bottom"
@@ -46,10 +45,10 @@ class Player
         else
           puts "Invalid coordinates. Please try again!"
         end
-      end
+    end
 
-      good_to_go = false
-        until good_to_go == true do
+      stop_loop = false
+        until stop_loop == true do
           puts @player_board.render(true)
           puts "Enter the squares for the Submarine (2 spaces):"
           puts "Please enter coordinates from left to right or top to bottom"
@@ -61,7 +60,7 @@ class Player
           user_sub = [user_3, user_4]
             if valid_cell?(user_sub) && @player_board.valid_placement?(@player_sub, user_sub)
               @player_board.place(@player_sub, user_sub)
-              good_to_go = true
+              stop_loop = true
             else
               puts "Invalid coordinates. Please try again!"
             end
@@ -87,7 +86,6 @@ class Player
       comp_sub_cells = @comp_board.cells.keys.shuffle.first(2)
     end
     @comp_board.place(@comp_sub, comp_sub_cells)
-    # puts @comp_board.render(true)  #For testing purposes(not actual gameplay)
   end
 
 
@@ -142,13 +140,7 @@ class Player
         keep_looping = false
       end
     end
-    # if    #sink
-    #   "sink"
-    # elsif     #hit
-    #   "hit"
-    # else      #miss
-    #   "miss"
-    # end
+
     @rosemary
   end
 
@@ -158,7 +150,7 @@ class Player
 
   def player_health?
     @player_sub.health == 0 && @player_cruiser.health == 0
- end
+  end
 
   def game_loop
 
@@ -169,18 +161,16 @@ class Player
       feedback_player
       feedback_comp
     end
-    if computer_health? 
+    if computer_health?
       puts "You won"
       start
     elsif
       puts "I won!"
       start
     end
-
   end
 
   def feedback_comp
-    # require "pry"; binding.pry
     if @player_board.cells[@rosemary].render == "X"
       puts "My shot on #{@rosemary.chomp("")} sunk your ship!"
     elsif @player_board.cells[@rosemary].render == "H"
@@ -199,5 +189,4 @@ class Player
       puts "Your shot on #{@user_firing.chomp("")} was a miss."
     end
   end
-
 end
