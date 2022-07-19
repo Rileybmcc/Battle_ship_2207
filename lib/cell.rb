@@ -15,19 +15,16 @@ class Cell
 
   def place_ship(name)
     @ship = name
-
   end
 
   def fired_upon?
     @coordinates_hit
-
   end
 
   def fire_upon
     @coordinates_hit = true
     if !empty?
       ship.hit
-
     end
   end
 
@@ -40,7 +37,6 @@ class Cell
   end
 
   def render(input = false)
-
     if !empty? && @ship.sunk?
       "X"
     elsif !empty? && fired_upon?
@@ -49,10 +45,8 @@ class Cell
       "M"
     elsif full_health_cell == true && input == true
       "S"
-    elsif !fired_upon?
+    else 
         "."
     end
   end
-
-  
 end
