@@ -29,19 +29,6 @@ class Board
     @cells.keys.include?(data)
   end
 
-  # def all_empty(input)
-  #   if input.map { |cell| @cells[cell].empty? }.uniq.count == 1
-  #     if input.map { |cell| @cells[cell].empty? }.uniq == true
-  #       true
-  #     else
-  #       false
-  #     end
-  #   else
-  #     false
-  #   end
-  # end
-  # all_empty(input)  #
-
   def valid_placement?(ship_type, input)
     numz = "1234"
     letters = "ABCD"
@@ -80,33 +67,15 @@ class Board
   def place(ship_type, input)
 
     if valid_placement?(ship_type, input)
-      # require "pry"; binding.pry
       input.each { |coord| @cells[coord].place_ship(ship_type)}
       true
-
     else
       false
     end
   end
 
   def render(visible = false)
-    # require "pry"; binding.pry
+
     "  1 2 3 4 \nA #{@cells["A1"].render(visible)} #{@cells["A2"].render(visible)} #{@cells["A3"].render(visible)} #{@cells["A4"].render(visible)} \nB #{@cells["B1"].render(visible)} #{@cells["B2"].render(visible)} #{@cells["B3"].render(visible)} #{@cells["B4"].render(visible)} \nC #{@cells["C1"].render(visible)} #{@cells["C2"].render(visible)} #{@cells["C3"].render(visible)} #{@cells["C4"].render(visible)} \nD #{@cells["D1"].render(visible)} #{@cells["D2"].render(visible)} #{@cells["D3"].render(visible)} #{@cells["D4"].render(visible)} \n"
   end
-
-  # def start
-  #   p "Welcome to BATTLESHIP"
-  #   p "Enter p to play. Enter q to quit."
-  #   user_input = gets.chomp
-  #   if user_input.downcase == "q"
-  #     p "Fine then...we didn't want to play either"
-  #   elsif user_input.downcase =="p"
-  #     p "Let's play!"
-  #
-  #
-  #   end
-  #
-  # end
-
-
 end

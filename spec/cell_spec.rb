@@ -45,20 +45,17 @@ RSpec.describe Cell do
 
   it 'can render cell' do
     expect(@cell.render).to eq('.')
-
   end
 
   it 'can render a miss' do
     @cell.fire_upon
     expect(@cell.render).to eq('M')
-
   end
 
   it 'can render a hit' do
     @cell.place_ship(@cruiser)
     @cell.fire_upon
     expect(@cell.render).to eq('H')
-
   end
 
   it 'can render sunk ship' do
@@ -68,12 +65,10 @@ RSpec.describe Cell do
     @cell.fire_upon
     expect(@cell.ship.sunk?).to eq(true)
     expect(@cell.render).to eq('X')
-
   end
 
   it 'can render healthy ship' do
     @cell.place_ship(@cruiser)
     expect(@cell.render(true)).to eq('S')
-
   end
 end
