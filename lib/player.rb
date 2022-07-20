@@ -8,7 +8,8 @@ class Player
               :comp_cruiser,
               :comp_sub,
               :player_cruiser,
-              :player_sub
+              :player_sub,
+              :end_game
 
   def initialize
     @comp_board = Board.new
@@ -17,7 +18,7 @@ class Player
     @comp_sub = Ship.new('sub', 2)
     @player_cruiser = Ship.new('cruiser', 3)
     @player_sub = Ship.new('sub', 2)
-
+    @end_game = false
   end
 
 
@@ -118,6 +119,7 @@ class Player
       puts "Fine then... I didn't want to play either"
       puts " "
       puts " "
+      @end_game = true
     elsif user_input.downcase =="p"
       system('clear')
       puts " "
@@ -156,6 +158,8 @@ class Player
     @comp_board.cells[@user_firing].fire_upon
     @user_firing
   end
+
+
 
   def comp_turn
     keep_looping = true
@@ -227,4 +231,5 @@ class Player
       puts "Your shot on #{@user_firing.chomp("")} was a miss."
     end
   end
+
 end
