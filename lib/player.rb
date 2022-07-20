@@ -28,13 +28,15 @@ class Player
     puts "The Cruiser is three units long and the Submarine is two units long."
     good_to_go = false
     until good_to_go == true do
-      puts @player_board.render
+      show_boards
       puts "Enter the squares for the Cruiser (3 spaces):"
       puts "Please enter coordinates from left to right or top to bottom"
       puts "Enter 1st coordinate:"
       user_1 = gets.chomp.upcase
+      puts " "
       puts "Enter 2nd coordinate:"
       user_2 = gets.chomp.upcase
+      puts " "
       puts "Enter 3nd coordinate:"
       user_3 = gets.chomp.upcase
       user_cruiser = [user_1, user_2, user_3]
@@ -42,26 +44,40 @@ class Player
         if valid_cell?(user_cruiser) && @player_board.valid_placement?(@player_cruiser, user_cruiser)
           @player_board.place(@player_cruiser, user_cruiser)
           good_to_go = true
+          system('clear')
         else
+          system('clear')
+          puts " "
+          puts " "
           puts "Invalid coordinates. Please try again!"
+          puts " "
         end
     end
 
       stop_loop = false
         until stop_loop == true do
-          puts @player_board.render(true)
+          puts " "
+          puts " "
+          show_boards   #@player_board.render(true)
           puts "Enter the squares for the Submarine (2 spaces):"
           puts "Please enter coordinates from left to right or top to bottom"
           puts "Enter 1st coordinate:"
           user_3 = gets.chomp.upcase
+          puts " "
           puts "Enter 2nd coordinate:"
           user_4 = gets.chomp.upcase
 
           user_sub = [user_3, user_4]
             if valid_cell?(user_sub) && @player_board.valid_placement?(@player_sub, user_sub)
               @player_board.place(@player_sub, user_sub)
+              system('clear')
+              puts " "
+              puts " "
               stop_loop = true
             else
+              system('clear')
+              puts " "
+              puts " "
               puts "Invalid coordinates. Please try again!"
             end
         end
@@ -90,13 +106,23 @@ class Player
 
 
   def start
-    p "Welcome to BATTLESHIP"
-    p "Enter p to play. Enter q to quit."
+
+    puts " "
+    puts " "
+    puts "Welcome to BATTLESHIP"
+    puts "Enter p to play. Enter q to quit."
     user_input = gets.chomp
     if user_input.downcase == "q"
-      p "Fine then...we didn't want to play either"
+      puts " "
+      puts " "
+      puts "Fine then... I didn't want to play either"
+      puts " "
+      puts " "
     elsif user_input.downcase =="p"
-      p "Let's play!"
+      system('clear')
+      puts " "
+      puts " "
+      puts "Let's play!"
       comp_placement
       player_placement
       game_loop
@@ -121,6 +147,7 @@ class Player
       if @comp_board.valid_coordinate?(@user_firing) && @comp_board.cells[@user_firing].fired_upon? == false
         popeye = true
       elsif @comp_board.valid_coordinate?(@user_firing)
+        puts " "
         puts "You have already fired upon this cell, check your map and enter new coordinates:"
       else
         puts "Please enter valid coordinate:"
@@ -158,15 +185,26 @@ class Player
       show_boards
       player_turn
       comp_turn
+      system('clear')
+      puts " "
+      puts " "
       feedback_player
       feedback_comp
     end
     if computer_health?
-      puts "You won"
-      start
-    elsif
+      puts " "
+      puts " "
+      puts "You won!"
+      puts " "
+      puts " "
+      # start
+    else
+      puts " "
+      puts " "
       puts "I won!"
-      start
+      puts " "
+      puts " "
+      # start
     end
   end
 
