@@ -3,8 +3,8 @@ require './lib/cell'
 require './lib/ship'
 require './lib/player'
 
-
-loop do #|index|
+player = Player.new
+until player.end_game == true do
   player = Player.new
   player.start
 end
